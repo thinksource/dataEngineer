@@ -1,0 +1,60 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that goes with our server code
+  version: "1.0.0"
+  title: Swagger Rest Article
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+paths:
+  /news:
+    get:
+      operationId: searchfunc.list_by_keywords
+      summary: search grab pages by keywords
+      tags:
+        - Search
+      description: Search news by keywords
+      parameters:
+        - name: keyword
+          in: query
+          type: string
+          required: true
+          description: the keyword for search
+        - name: page
+          in: query
+          type: integer
+          minimum: 1
+          default: 1
+          required: false
+          description: the page number of the search
+        - name: perpage
+          in: query
+          type: integer
+          minimum: 2
+          default: 20
+          required: false
+          description: how many result per page
+      responses:
+        200:
+          description: Successful get the list 
+
+  /news/{sha1}:
+    get:
+      operationId: searchfunc.show_details
+      summary: search grab pages by keywords
+      tags:
+        - Search
+      description: Search news by keywords
+      parameters:
+        - name: sha1
+          in: path
+          type: string
+          required: true
+          description: the keyword for search
+      responses:
+        200:
+          description: Successful get the list 
