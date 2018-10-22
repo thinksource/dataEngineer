@@ -17,3 +17,11 @@ scrapy crawl BBCspider -o spider.json
 
 the search string is case sensetive. The default use captitalize() string as keyword.
 
+### swagger ui:
+
+http://localhost:5000/api/ui/#/Search
+
+
+## testing
+
+use 

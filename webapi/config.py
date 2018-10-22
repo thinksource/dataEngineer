@@ -1,7 +1,7 @@
 import os
 import connexion
 import pymongo
-
+import json
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Create the connexion application instance
@@ -21,5 +21,7 @@ file=open('..\\db.txt','r')
 app.config['DATABASE_URI'] = file.read()  
 
 client = pymongo.MongoClient(app.config['DATABASE_URI'])
-collection=client['crawlerdb']['news']
+collection=json.load(open("..\\testdb.json"))
+collection = client['crawlerdb']['news']
+# app.collection=collection
 connex_app.add_api('swagger.yml')

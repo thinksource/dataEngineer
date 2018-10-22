@@ -1,5 +1,5 @@
 from config import connex_app, collection
-from flask_script import Manager, Shell, Server
+from flask_script import Manager, Shell
 
 manager = Manager(connex_app.app)
 def _make_context():
@@ -15,10 +15,10 @@ def runserver():
 @manager.command
 def test():
     import pytest
-    exit_code = pytest.main(['tests', '-q'])
+    exit_code = pytest.main(['test_server.py','-v'])
     return exit_code
 
-manager.add_command('server', Server(host="0.0.0.0", port=5000))
+
 manager.add_command('shell', Shell(make_context=_make_context))
 
 if __name__ == '__main__':
