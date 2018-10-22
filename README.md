@@ -1,6 +1,13 @@
 
 # README
-create collection craw
+
+
+
+Create collection news on crawlerdb database on MongoDB.
+
+You need to install requirements in requirement.txt before you run it.
+
+
 
 ## database setting
 
@@ -39,12 +46,27 @@ Those content including javascript, css, iframe, figure and bbccom advertiement,
 
 There may have another ads, I may not cleanup.
 
+3. The keywords is base on Reated Topics, if there is no Related Topic, there will be empty keywords.
+
+4. Spider do not duplicate grab pages depending on two things:
+
+4.1. Spider rule have LinkExtractor setting unique=True
+
+s4.2. the sha1 of passage text, if the sha1 string is equal, even if the url is different it still can not insert into the database, according to valid variable.
+
+
 
 ## Search api
 
 the search string is case sensetive. The default use captitalize() string as keyword.
 
+fellowing the OpenAPI 2.0, **swagger 2.0** rules.
 
+
+http://localhost:5000/api/news/{sha1}
+
+
+http://localhost:5000/api/news?keyword=keywords&page=1&perpage=20
 
 
 ### swagger ui:
@@ -54,4 +76,4 @@ http://localhost:5000/api/ui/#/Search
 
 ## testing
 
-Just using the pip
+Just using test the rest APIs, it is really hard to test Spider.
