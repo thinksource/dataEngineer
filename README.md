@@ -35,7 +35,7 @@ the pipeline is first get element into item and using BbcCrawlerPipeline to stor
 
 ## Spider special:
 
-1. there is lots of passage in bbc.com do not have author, so it will be "https://www.facebook.com/bbcnews"
+1. there is lots of articles in bbc.com do not have author, so it will be "https://www.facebook.com/bbcnews" in the author.
 
 2. I use **xpath** filter to clean the  superfluous content
 
@@ -52,7 +52,7 @@ There may have another ads, I may not cleanup.
 
 4.1. Spider rule have LinkExtractor setting unique=True
 
-4.2. the sha1 of passage text, if the sha1 string is equal, even if the url is different it still can not insert into the database, according to valid variable.
+4.2. the sha1 is additional index of article, if the sha1 string is equal, even if the url is different it still can not insert into the database, according to valid variable.
 
 
 
