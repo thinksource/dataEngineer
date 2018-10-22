@@ -46,34 +46,52 @@ Those content including javascript, css, iframe, figure and bbccom advertiement,
 
 There may have another ads, I may not cleanup.
 
-3. The keywords is base on Reated Topics, if there is no Related Topic, there will be empty keywords.
+3. The keywords is base on Related Topics, if there is no Related Topic, there will be empty keywords.
 
 4. Spider do not duplicate grab pages depending on two things:
 
 4.1. Spider rule have LinkExtractor setting unique=True
 
-s4.2. the sha1 of passage text, if the sha1 string is equal, even if the url is different it still can not insert into the database, according to valid variable.
+4.2. the sha1 of passage text, if the sha1 string is equal, even if the url is different it still can not insert into the database, according to valid variable.
 
 
 
 ## Search api
 
-the search string is case sensetive. The default use captitalize() string as keyword.
+the search string is **case sensetive**. The default word use captitalize() function as keyword.
 
 fellowing the OpenAPI 2.0, **swagger 2.0** rules.
 
+get:
 
 http://localhost:5000/api/news/{sha1}
 
+This way will display all contents of article.
+
+
+get:
 
 http://localhost:5000/api/news?keyword=keywords&page=1&perpage=20
 
+The list api do not show the content(text part) of article.
 
 ### swagger ui:
 
 http://localhost:5000/api/ui/#/Search
 
 
+## command line:
+
+The running server commandline in webapi/manage.py
+
+you can run it base like:
+
+```
+python manage.py runserver
+```
+
+
+
 ## testing
 
-Just using test the rest APIs, it is really hard to test Spider.
+Just testing the rest APIs, it is really hard to test Spider.
