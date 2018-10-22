@@ -7,7 +7,10 @@ import logging
 from scrapy.conf import settings
 import pymongo
 from pymongo import IndexModel
-file=open('..\\..\\db.txt','r')
+import os
+print(os.getcwd())
+filepath=os.path.join(os.getcwd(), '..\\db.txt')
+file=open(filepath,'r')
 dbstr=file.read()
 index_name="search_index"
 class BbcCrawlerPipeline(object):

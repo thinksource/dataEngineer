@@ -10,6 +10,10 @@ import re
 import hashlib
 
 sha1 = hashlib.sha1()
+denyrule = ('.stm$', '.js$', '.css$', '.jpg$', '.png$')
+
+# filter these ad or js elements from text body 
+delete_cotent="*[not(descendant-or-self::style |descendant-or-self::iframe | descendant-or-self::figure | descendant-or-self::script | descendant-or-self::div[contains(@class, 'bbccom_advert')] | descendant-or-self::div[contains(@class, 'teads-inread')] | descendant-or-self::div[contains(@class, 'twitter-wrap')])]"
 
 class BbcspiderSpider(CrawlSpider):
     name = 'BBCspider'
@@ -32,11 +36,11 @@ class BbcspiderSpider(CrawlSpider):
 
     rules = [
         Rule(
-            LinkExtractor(allow=r'news', unique=True),
+            LinkExtractor(allow=r'news', deny=denyrule, unique=True),
             callback='parse_item', follow=True    
         ),
         Rule(
-            LinkExtractor(allow=r'https://traffic.outbrain.com/network', unique=True),
+            LinkExtractor(allow=r'https://traffic.outbrain.com/network', deny=denyrule, unique=True),
             callback='parse_item', follow=True
         )
 
@@ -58,12 +62,14 @@ class BbcspiderSpider(CrawlSpider):
             # import pdb; pdb.set_trace()
             item["description"] = response.xpath('//meta[@name="description"]/@content').extract_first()
             body_sc = response.xpath("//div[@class='story-body__inner']")
-            if len(body_sc) > 0: 
-                text = body_sc[0].xpath("string(.)").extract_first()
+            if len(body_sc) > 0:
+                list_text=body_sc.xpath(delete_cotent).xpath("string(.)").extract()
+                text = '\n'.join(list_text).strip()
             else:
                 body_sc = response.xpath("//div[contains(@class,'main_article_text')]")
-                text=body_sc[0].xpath("string(.)").extract_first()
-            item['text']=re.sub(r'[ ]+\n', '', text)
+                list_text=body_sc.xpath(delete_cotent).xpath("string(.)").extract()
+                text='\n'.join(list_text).strip()
+            item['text']=text
             
             item["viewtime"] = datetime.utcnow()
             item["url"] = response.url
