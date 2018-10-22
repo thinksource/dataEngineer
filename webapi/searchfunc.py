@@ -5,7 +5,7 @@ from config import collection
 
 def list_by_keywords(keyword, page, perpage):
     skip = (page - 1) * perpage    
-    resultlist=collection.find({"keywords":keyword}).skip(skip).limit(perpage)
+    resultlist=collection.find({"keywords":keyword.capitalize()}).skip(skip).limit(perpage)
     ret = []
     for i in resultlist:
         tmp = {}
