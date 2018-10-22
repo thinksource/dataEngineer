@@ -28,9 +28,7 @@ testitem2 = {
 @pytest.fixture
 def client():
     # collection=json.load(open("..\\testdb.json"))
-    
     client= app.test_client()
-
     yield client
 
 
