@@ -3,7 +3,7 @@
 
 
 
-Create collection news on crawlerdb database on MongoDB.
+Create **collection** news on **crawlerdb** database on MongoDB.
 
 You need to install requirements in requirement.txt before you run it.
 
