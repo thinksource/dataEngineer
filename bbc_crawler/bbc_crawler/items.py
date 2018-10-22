@@ -18,11 +18,6 @@ class BbcCrawlerItem(Item):
     viewtime = Field()
     description = Field()
     sha1=Field()
-    
-    
-class DatabloggerScraperItem(Item):
-    url = Field()
-    text = Field()
-    title = Field()
+
     
 

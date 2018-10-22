@@ -9,6 +9,7 @@ the database connection is store in db.txt, which is not loaded on github. you s
 
 ## RUN spider
 
+go to bbc_crawler directory
 ```
 scrapy crawl BBCspider -o spider.json
 ```
