@@ -57,4 +57,4 @@ paths:
           description: the keyword for search
       responses:
         200:
-          description: Successful get the list 
+          description: Successful get the object

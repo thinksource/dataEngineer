@@ -20,4 +20,5 @@ def list_by_keywords(keyword, page, perpage):
 
 def show_details(sha1):
     result = collection.find_one({"sha1": sha1})
+    result.pop('_id')
     return jsonify(result)

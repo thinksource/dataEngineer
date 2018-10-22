@@ -1,12 +1,13 @@
 import os
 import connexion
-
+import pymongo
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 # Create the connexion application instance
-connex_app = connexion.FlaskApp(__name__,  specification_dir=basedir)
+connex_app = connexion.FlaskApp(__name__, specification_dir=basedir)
 
+# print(basedir)
 # Get the underlying Flask app instance
 app = connex_app.app
 
@@ -19,5 +20,6 @@ file=open('..\\db.txt','r')
 
 app.config['DATABASE_URI'] = file.read()  
 
-client = pymongo.MongoClient(app.config[['DATABASE_URI']])
+client = pymongo.MongoClient(app.config['DATABASE_URI'])
 collection=client['crawlerdb']['news']
+connex_app.add_api('swagger.yml')
