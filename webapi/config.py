@@ -23,5 +23,5 @@ app.config['DATABASE_URI'] = file.read()
 client = pymongo.MongoClient(app.config['DATABASE_URI'])
 collection=json.load(open("..\\testdb.json"))
 collection = client['crawlerdb']['news']
-# app.collection=collection
+app.collection=collection
 connex_app.add_api('swagger.yml')
