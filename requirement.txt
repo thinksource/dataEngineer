@@ -51,7 +51,7 @@ selenium==3.14.1
 service-identity==17.0.0
 six==1.11.0
 swagger-spec-validator==2.4.1
-Twisted==18.9.0
+Twisted==22.4.0
 typed-ast==1.1.0
 urllib3==1.24
 w3lib==1.19.0
